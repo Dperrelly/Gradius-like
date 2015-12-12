@@ -4,7 +4,7 @@ var path = require('path');
 var indexHtmlPath = path.join(__dirname, '../views/index.html');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.use('/', function(req, res, next) {
   res.sendFile(indexHtmlPath);
 });
 

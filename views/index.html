@@ -3,13 +3,16 @@
 	<head>
 		<title>gradius</title>
 		<link rel="stylesheet" href="/stylesheets/style.css">
-	</head>
-	<body>
-		<ui-view></ui-view>
+		<base href="/"/>
 		<script src="/node_modules/angular/angular.js"></script>
 	    <script src="/node_modules/pixi.js/bin/pixi.js"></script>
 	    <script src="/node_modules/pixi-particles/dist/pixi-particles.min.js"></script>
 	    <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="/main.js"></script>
+	</head>
+	<body ng-app="Gradius">
+		<div ui-view>
+			
+		</div>
 	</body>
 </html>
