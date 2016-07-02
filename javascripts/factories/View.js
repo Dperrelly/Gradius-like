@@ -1,23 +1,48 @@
 app.factory("View", function(){
-	var View = {};
+	var exports = {};
 
-	View.renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight);
- 	document.body.appendChild(View.renderer.view);
- 	//$("#mainContainer").append(StateFactory.renderer.view);
+	exports.canvasWidth = 1000;
+	exports.canvasHeight = 700;
 
-	View.init = function(){
-		View.containers = {};
-		View.containers.main = new PIXI.Container();
-		View.containers.background = new PIXI.Container();
-		View.containers.enemies = new PIXI.Container();
-		View.containers.attacks = new PIXI.Container();
-		View.containers.player = new PIXI.Container();
+	exports.renderer = PIXI.autoDetectRenderer(exports.canvasWidth, exports.canvasHeight);
+ 	document.body.appendChild(exports.renderer.view);
+ 	console.log(exports.renderer);
 
-		View.containers.main.addChild(View.containers.background);
-		View.containers.main.addChild(View.containers.enemies);
-		View.containers.main.addChild(View.containers.attacks);
-		View.containers.main.addChild(View.containers.player);
-	}
+  //   function resizeCanvas() {
+  //       exports.renderer.width = window.innerWidth;
+  //       exports.renderer.height = window.innerHeight;
+  //   }
 
-	return View;
+ 	// window.addEventListener('resize', resizeCanvas, false);    
+
+ 	exports.textures = {};
+ 	exports.textures.enemy1 = PIXI.Texture.fromImage("/images/enemy1.png");
+ 	exports.textures.ship = PIXI.Texture.fromImage("/images/ship.png");
+ 	exports.textures.bg1 = PIXI.Texture.fromImage("/images/background.jpg");
+ 	
+	exports.init = function(){
+		var containers = [
+			'background',
+			'enemies',
+			'attacks',
+			'player',
+			'ui',
+		];
+		exports.containers = {
+			main: new PIXI.Container()
+		};
+		containers.forEach(function(container){
+			exports.containers[container] = new PIXI.Container();
+			exports.containers.main.addChild(exports.containers[container]);
+		});
+	};
+
+	exports.center = function (img){
+		img.pivot.x = 0.5;
+        img.pivot.y = 0.5;
+        img.anchor.x = 0.5;
+        img.anchor.y = 0.5;
+	};
+
+	return exports;
 });
